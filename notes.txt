@@ -1,0 +1,27 @@
+execeve should go in the child
+
+bc if w/e execve doesnt it will quit?
+
+spawn a child and have the parent wait
+
+--
+
+after it does execv in the loop
+	no more child in the loop
+		so break; after execv
+
+--------
+2,3,4
+
+write up a fork tree
+-
+upon fork() <- right here is where both processes exist
+
+if(fork() == 0)
+	child
+else if
+	parent
+ 
+so both processes will check to see if fork is 0
+	child will return 0
+	parent will return child ID
