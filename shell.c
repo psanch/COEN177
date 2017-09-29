@@ -5,36 +5,38 @@
 
 int main(void){
 
-	int status, flag = 0;
-	char input[5];
+	int status;
+	char input[30];
+	char exit[30] = "exit\0";
+	pid_t id;
 
-	while (flag == 0){ /* repeat forever */
+	while (1){ /* repeat forever */
 		printf("Please enter command:\n"); /* display prompt */
-		scanf("%c",input); /* input from terminal */ 
-		//printf("%s\n",input);
+		scanf("%s",input); /* input from terminal */ 
 		
 
-		if( strcmp(input,"exit\0") == 0){
+		if( strcmp(input,exit) == 0){
 			printf("I am exiting!\n");
-			flag = 1;
+			
 			return 0;
 		}
-
 		
 
-		if ( fork() == 0) {/* fork off child process */
-		/* C code */
+	        if ( fork() == 0) {
+		// C code 
 			
-			execve (input,NULL,0); /* execute command */
+			execve(input,NULL,0);
+			break; 
 			
 		} 
 		
 		else {
-		/* P code */
+		// P code 
 			
-			waitpid( id, &status, 0); /* wait for child to exit */
+			waitpid( -1, &status, 0); 
 								 
 		}
+	
 	}
 
 	return 0;
