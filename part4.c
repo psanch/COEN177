@@ -10,7 +10,7 @@ else
         parent
 
 */
-void create3(){
+void create2(){
 
   //printf("\nI am a (soon to be) parent.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
 
@@ -34,27 +34,45 @@ void create3(){
 
             else{ //parent
 
-                            if (fork() == 0 ){
-
-                              //three child created
-                              printf("\nI am child 2C.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
-                              return;
-
-                            }
-
-                            else{
-
-                              return;
-
-                            }
-
-
+              return;
 
             }
 
   }
 }
 
+void create2twice(){
+
+  //printf("\nI am a (soon to be) parent.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
+
+  if (fork() == 0 ){
+
+    //one child created
+    printf("\nI am child 2A.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
+    create2();
+    return;
+
+  }
+
+  else{ //parent
+
+            if (fork() == 0 ){
+
+              //two child created
+              printf("\nI am child 2B.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
+              create2();
+              return;
+
+            }
+
+            else{ //parent
+
+                return;  
+
+            }
+
+  }
+}
 
 void create3twice(){
 
@@ -64,7 +82,7 @@ void create3twice(){
 
     //one child created
     printf("\nI am child 1A.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
-    create3();
+    create2twice();
     return;
 
   }
@@ -75,7 +93,7 @@ void create3twice(){
 
               //two child created
               printf("\nI am child 1B.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
-              create3();
+              create2twice();
               return;
 
             }
@@ -86,7 +104,7 @@ void create3twice(){
 
                               //three child created
                               printf("\nI am child 1C.\nMy Parent's ID is: %d\nMy ID is: %d\n",getppid(),getpid() );
-                              create3();
+                              create2();
                               return;
 
                             }
